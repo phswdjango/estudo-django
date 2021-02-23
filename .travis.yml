@@ -1,11 +1,19 @@
 language: python
+dist: xenial
+sudo: true
 python:
   - 3.9
+env:
+  global:
+    - PIPENV_VENV_IN_PROJECT=1
+    - PIPENV_IGNORE_VIRTUALENV=1
 install:
   - pip install -q pipenv codecov
   - pipenv sync --dev
 script:
-  - flake8
-  - pytest modelo-django --cov=modelo-django
+  - pipenv run flake8
+  - pipenv run pytest modelo-django --cov=modelo-django
 after_success:
   - codecov
+
+
