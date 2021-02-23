@@ -6,6 +6,6 @@ install:
   - pipenv sync --dev
 script:
   - flake8
-  - pytest estudo-django --cov=estudo-django
+  - pytest modelo-django --cov=modelo-django
 after_success:
   - codecov
