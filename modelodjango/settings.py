@@ -25,7 +25,7 @@ SECRET_KEY = 'ls$$@r1-a+vs@afekd)t*=3@)php^cl7d*e7z#ffnz35v4*r!c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
