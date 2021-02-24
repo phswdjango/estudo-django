@@ -12,6 +12,21 @@ python manage.py --help  : mostra os comandos do manage.py
 
 python manage.py runserver   : roda em servidor local
 
+
+---------------/heroku
+#criar app no heroko
+heroku apps:create nomedoapp
+
+#desabilitar coleta de arquivos staticos
+heroku config:set DISABLE_COLLECTSTATIC=1
+
+#push pro heroku
+git push heroku <branchname>:main
+
+#abre aplicação no navegador
+heroku open
+
+
 ---------------/outros comandos do shell do pipenv
 -----/criar alias para manage.py
 echo $VIRTUAL_ENV   : ver caminho da virtualenv
