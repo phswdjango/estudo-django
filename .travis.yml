@@ -12,7 +12,7 @@ install:
   - pipenv sync --dev
 script:
   - flake8
-  - pytest modelo-django --cov=modelo-django
+  - pytest modelodjango --cov=modelodjango
 after_success:
   - codecov
 

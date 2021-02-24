@@ -1,0 +1,11 @@
+--------/ COMANDOS
+
+django-admin   : serve para enviar comandos django, se rodar sem nenhum subcomando, mostra a lista de sub-comandos do
+django-admin no terminal
+
+django-admin startproject projectname .  : cria a estrutura inicial do projeto e o arquivo "manage.py"("." para escolher o
+diretorio atual)
+
+python manage.py --help  : mostra os comandos do manage.py
+
+
