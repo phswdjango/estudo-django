@@ -1,0 +1,21 @@
+-----------------------------------/ COMANDOS /------------------------------------------
+---------------/django-admin
+django-admin   : serve para enviar comandos django, se rodar sem nenhum subcomando, mostra a lista de sub-comandos do
+django-admin no terminal
+
+django-admin startproject projectname .  : cria a estrutura inicial do projeto e o arquivo "manage.py"("." para escolher o
+diretorio atual)
+
+---------------/manage.py
+
+python manage.py --help  : mostra os comandos do manage.py
+
+python manage.py runserver   : roda em servidor local
+
+---------------/outros comandos do shell do pipenv
+-----/criar alias para manage.py
+echo $VIRTUAL_ENV   : ver caminho da virtualenv
+alias mng='python $VIRTUAL_ENV/../manage.py'   : criar alias para encontrar o manage.py
+nano .bash_aliases   : abra o arquivo e adicione o alias, para ser salvo permanentemente, feche os terminais.
+
+mng runserver  : rodar server
