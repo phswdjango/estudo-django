@@ -4,3 +4,8 @@ serve para gerenciar a aplicação
 
 
 
+--------------/pacote/app/view.py
+responsavel por responder as requisições feitas pelo navegador
+uma função na view, sempre tem que receber uma request como parametro
+o corpo da função sempre precisa retornar um HttpResponse
+
