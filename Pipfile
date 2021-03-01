@@ -13,6 +13,7 @@ pytest = "*"
 coverage = "*"
 pytest-cov = "*"
 pytest-mock = "*"
+pytest-django = "*"
 
 [requires]
 python_version = "3.9"
