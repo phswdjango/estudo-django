@@ -1,5 +1,5 @@
 from django.test import Client
-# server para emular requisições http
+# server para emular requisições http, usando a view e path configurados
 
 
 def test_status_code(client: Client):
