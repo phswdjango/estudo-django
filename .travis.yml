@@ -6,12 +6,12 @@ python:
 env:
   global:
     - PIPENV_VENV_IN_PROJECT=1
-    - PIPENV_IGNORE_VIRTUALENV=1
+    - PIPENV_IGNORE_VIRTUALENVS=1
 install:
-  - pip install -q pipenv codecov
+  - pip install -q pipenv
   - pipenv sync --dev
 script:
-  - flake8
-  - pytest modelodjango --cov=modelodjango
+  - pipenv run flake8
+  - pipenv run pytest --cov modelodjango
 after_success:
-  - codecov
+  - pipenv run codecov

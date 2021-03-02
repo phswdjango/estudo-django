@@ -9,3 +9,7 @@ responsavel por responder as requisições feitas pelo navegador
 uma função na view, sempre tem que receber uma request como parametro
 o corpo da função sempre precisa retornar um HttpResponse
 
+
+
+--------------/Pytest-django
+#fixture Client: emula requisições http usando o path configurado em urls e a view configurada na app que for chamada
