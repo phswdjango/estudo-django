@@ -16,4 +16,8 @@ o corpo da função sempre precisa retornar um HttpResponse
 
 
 --------------/ secret key
+utilizada em varios pontos dentro da aplicação, onde é necessario assinatura criptografica
+-sessões: arquivos que sao mandados pro navegador pra manter usuario logado
+-envio de mensagens:
+-reset de password usando login
 

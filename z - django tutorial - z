@@ -200,3 +200,19 @@ DEGUB = False
 6 - disponibilizar o arquivo de configuração para o servidor de integração continua
 #adicione em 'install'
 - cp contrib/env-sample .env
+
+    20)extrair a SECRET KEY do settings
+
+1 - configure o decople para buscar a chave nas variaveis de ambiente ou na variavel 'SECRET_KEY' de .env
+settings.py > SECRET_KEY = config('SECRET_KEY')
+2 - adicione uma chave no seu '.env' do ambiente de desenvolvimento e no 'env-sample' da pasta 'contrib', que será
+importado pro '.env' do travis
+3 - crie uma chave secreta randomica para enviar pra aplicação de produção (heroku)
+#entre no interpretador python da sua .venv
+>>>from django.core.management.utils import get_random_secret_key
+>>>get_random_secret_key()
+4 - crie uma variavel de ambiente no heroku
+#OBS: vc deve copiar a chave secreta com os parenteses, pois ela deve ser passada como string
+heroku config:set SECRET_KEY=<sua_chave_secreta>
+5 - confira as variaveis de ambiente do servidor heroku
+heroku config
