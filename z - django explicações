@@ -13,3 +13,7 @@ o corpo da função sempre precisa retornar um HttpResponse
 
 --------------/Pytest-django
 #fixture Client: emula requisições http usando o path configurado em urls e a view configurada na app que for chamada
+
+
+--------------/ secret key
+
