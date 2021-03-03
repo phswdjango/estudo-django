@@ -17,6 +17,9 @@ python manage.py runserver   : roda em servidor local
 #criar app no heroko
 heroku apps:create nomedoapp
 
+#visualizar variaveis de ambiente
+heroku config
+
 #desabilitar coleta de arquivos staticos
 heroku config:set DISABLE_COLLECTSTATIC=1
 
