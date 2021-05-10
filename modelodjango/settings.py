@@ -9,11 +9,14 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
+from functools import partial
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from decouple import config
+from decouple import config, Csv
+import dj_database_url
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +30,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
@@ -76,12 +79,43 @@ WSGI_APPLICATION = 'modelodjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+#------------------------
+
+default_db_url = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+
+#partial server para criar uma nova chamada de função personalizada(com alguns parametros preselecionados)
+#no caso estamos criando uma chamada da função parse, com o parametro 'conexão maxima 600'.  Dessa forma, sera necessario
+#passar apenas o primeiro parametro, que é a URL.
+
+parse_database = partial(dj_database_url.parse, conn_max_age=600)
+
+"""abaixo, esta buscando o valor da variavel de ambiente 'DATABASE_URL', se nao encontrar pega o "default"(que aponta para
+o arquivo db.sqlite3, na raiz do projeto), mas em tod0 caso vai passar o valor obtido para a função do parametro "cast", 
+que é um "partial" de dj_database_url.parse, que irá retornar uma serie de valores, que são:
+{'NAME': '/home/phsw/PycharmProjects/estudo-django/db.sqlite3', 'USER': '', 'PASSWORD': '', 'HOST': '', 'PORT': '', 
+ 'CONN_MAX_AGE': 600, 'ENGINE': 'django.db.backends.sqlite3'}"""
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': config('DATABASE_URL', default=default_db_url, cast=parse_database)
 }
+#-----------------------/codigo antigo E codigo antigo(da aula pytho pro Endereço de Banco de Dados)
+
+#     #django 3.2.2
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+#     #django do curso python pro
+# default_db_url = os.path.join(BASE_DIR, 'db.sqlite3')
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': default_db_url,
+#     }
+# }
+##---------------
 
 
 # Password validation
