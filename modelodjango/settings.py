@@ -139,9 +139,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -153,4 +153,42 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+# configuração de ambiete de desenvolvimento
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # na pasta 'staticfiles' no diretorio root(BASE_DIR)
+# configurar pasta de upload de arquivos
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+
+# storage configuration in S3 AWS
+
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+
+if AWS_ACCESS_KEY_ID:
+    AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400', }  # controle de tempo de cach do S3
+    AWS_PRELOAD_METADATA = True
+    AWS_AUTO_CREATE_BUCKET = False  # nao vamos criar buckets automaticamente
+    AWS_QUERYSTRING_AUTH = True  # para gerar urls assinadas.
+    AWS_S3_CUSTOM_DOMAIN = None  # por q nos vamos utilizar o proprio dominio do S3
+    AWS_DEFAULT_ACL = 'private'  # para que nossos arquivos do S3 nao fiquem publicos.
+
+    # -----/Static assets
+    STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
+    # classe da biblioteca que instalamos que vai fazer a gestão da pasta static pragente.
+    STATIC_S3_PATH = 'static'  # path padrão dos arquivos estaticos
+    STATIC_ROOT = f'/{STATIC_S3_PATH}/'  # sobrescrever o static_root da linha 158.
+    STATIC_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{STATIC_S3_PATH}/'
+    # começa com '//' por que vai seguir o protocolo no qual ele for inserido (https, http,)
+    ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'  # separar os arquivos staticos de admin
+
+    # ---/Upload Media Folder
+    DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.StaticStorage'
+    # classe dessa biblioteca que vai fazer a gestão de upload de arquivos
+    DEFAULT_S3_PATH = 'media'  # path padrão dos arquivos estaticos
+    MEDIA_ROOT = f'/{STATIC_S3_PATH}/'  # sobrescrever o static_root da linha 158.
+    MEDIA_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{STATIC_S3_PATH}/'
+    # começa com '//' por que vai seguir o protocolo no qual ele for inserido (https, http,)
+    INSTALLED_APPS.append('s3_folder_storage')
+    INSTALLED_APPS.append('storages')  # adicionar essas libs apenas se estiver com AWS configurado.
