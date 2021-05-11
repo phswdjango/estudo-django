@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'collectfast',
     'django.contrib.staticfiles',
     'modelodjango.base',
 ]
@@ -160,6 +161,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # na pasta 'staticfiles' no
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
+CONNECTFAST_ENABLED = False
 # storage configuration in S3 AWS
 
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
@@ -173,7 +175,7 @@ if AWS_ACCESS_KEY_ID:
     AWS_QUERYSTRING_AUTH = True  # para gerar urls assinadas.
     AWS_S3_CUSTOM_DOMAIN = None  # por q nos vamos utilizar o proprio dominio do S3
     AWS_DEFAULT_ACL = 'private'  # para que nossos arquivos do S3 nao fiquem publicos.
-
+    CONNECTFAST_ENABLED = True
     # -----/Static assets
     STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
     # classe da biblioteca que instalamos que vai fazer a gestão da pasta static pragente.
