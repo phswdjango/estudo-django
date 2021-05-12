@@ -32,6 +32,11 @@ DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
+AUTH_USER_MODEL = 'base.User'  # "qual é a app onde o modelo se encontra"<ponto>"o modelo"
+# AUTH_USER_MODEL = '<app>.<Model>'
+# é necessario essa variavel pois nao estamos utilizado o usuario padrão do django. Por isso precisamos informar qual
+# será a classe base usada como usuario
+
 
 # Application definition
 STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
@@ -191,8 +196,8 @@ if AWS_ACCESS_KEY_ID:  # pragma: no cover
     DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.StaticStorage'
     # classe dessa biblioteca que vai fazer a gestão de upload de arquivos
     DEFAULT_S3_PATH = 'media'  # path padrão dos arquivos estaticos
-    MEDIA_ROOT = f'/{STATIC_S3_PATH}/'  # sobrescrever o static_root da linha 158.
-    MEDIA_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{STATIC_S3_PATH}/'
+    MEDIA_ROOT = f'/{DEFAULT_S3_PATH}/'  # sobrescrever o static_root da linha 158.
+    MEDIA_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{DEFAULT_S3_PATH}/'
     # começa com '//' por que vai seguir o protocolo no qual ele for inserido (https, http,)
     INSTALLED_APPS.append('s3_folder_storage')
     INSTALLED_APPS.append('storages')  # adicionar essas libs apenas se estiver com AWS configurado.
