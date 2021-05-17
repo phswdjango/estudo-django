@@ -39,8 +39,7 @@ AUTH_USER_MODEL = 'base.User'  # "qual é a app onde o modelo se encontra"<ponto
 
 
 # Application definition
-STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -82,6 +81,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'modelodjango.wsgi.application'
+# Configuração Django Debug Toolbar
+INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 
 
 # Database
@@ -184,6 +188,8 @@ if AWS_ACCESS_KEY_ID:  # pragma: no cover
     AWS_DEFAULT_ACL = 'private'  # para que nossos arquivos do S3 nao fiquem publicos.
     CONNECTFAST_ENABLED = True
     # -----/Static assets
+    # STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"  # linha original da documentação.
+    COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"  # essa e a anterior sao o do collectfast
     STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
     # classe da biblioteca que instalamos que vai fazer a gestão da pasta static pragente.
     STATIC_S3_PATH = 'static'  # path padrão dos arquivos estaticos
