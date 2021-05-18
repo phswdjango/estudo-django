@@ -6,4 +6,3 @@ _test_case = TestCase()  # instancia um test case do django, e atribuir a _test_
 assert_contains = _test_case.assertContains
 
 # vamos pegar o acesso do metodo. Vamos export todos os metodos quer forem necessarios de TestCase
-
