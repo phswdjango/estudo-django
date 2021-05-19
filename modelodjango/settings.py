@@ -109,6 +109,8 @@ parse_database = partial(dj_database_url.parse, conn_max_age=600)
 # {'NAME': '/home/phsw/PycharmProjects/estudo-django/db.sqlite3', 'USER': '', 'PASSWORD': '', 'HOST': '', 'PORT': '',
 #  'CONN_MAX_AGE': 600, 'ENGINE': 'django.db.backends.sqlite3'}
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 DATABASES = {
     'default': config('DATABASE_URL', default=default_db_url, cast=parse_database)
 }
