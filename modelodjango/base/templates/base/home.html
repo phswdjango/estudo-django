@@ -1,16 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Python Pro</title>
+    <title>Demo Django</title>
 
-    <meta name="description" content="Estudos de django">
+    <meta name="description" content="Demo Django">
     <meta name="author" content="Pedro Madureira">
-
+    <link rel="icon" type="image/jpg" href="{% static 'img/favicon.jpg' %}" />
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -21,7 +21,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'base:home' %}">Estudo Django</a>
+        <a class="navbar-brand" href="{% url 'base:home' %}">Demo Django</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -35,35 +35,34 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="jumbotron">
                 <h2>
-                    Hello, world!
+                    Demonstração de aplicação Django
                 </h2>
                 <p>
-                    This is a template for a simple marketing or informational website. It includes a large callout
-                    called the hero unit and three supporting pieces of content. Use it as a starting point to create
-                    something more unique.
+                    Esse site é uma demonstração de uma aplicação django.
                 </p>
                 <p>
-                    <a class="btn btn-primary btn-large" href="#">Learn more</a>
+                    <a class="btn btn-primary btn-large" href="http://phsolucoesweb.com.br/" target="_blank">Leia Mais
+                    </a>
                 </p>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <h5 class="card-header">
-                            Card title
+                            Framework Web Utilizado
                         </h5>
                         <div class="card-body">
                             <p class="card-text">
-                                Card content
+                                <img src="{% static 'img/django.png' %}" alt="Imagem do django" class="img-thumbnail
+                                float-left m-3"/>
+                                Django é um framework para desenvolvimento rápido para web, escrito em Python, que
+                                utiliza o padrão model-template-view (MTV).
                             </p>
-                        </div>
-                        <div class="card-footer">
-                            Card footer
                         </div>
                     </div>
                 </div>
@@ -71,5 +70,29 @@
         </div>
     </div>
 </div>
+<footer class="main-footer mt-5 pt-4 text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Entre em Contato</h3>
+                <address>
+                    62 99337-8753
+                    <br/>
+                    <a href="mailto:contato@phsolucoes.com.br" class="text-light">contato@phsolucoes.com.br</a>
+                </address>
+            </div>
+        </div>
+
+    </div>
+    <div class="rights pb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% now 'Y' %} PH - Soluções Web.
+            </div>
+        </div>
+    </div>
+    </div>
+</footer>
 </body>
 </html>
