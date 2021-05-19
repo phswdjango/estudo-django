@@ -16,11 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-from modelodjango.base.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', home, name='home'),
+    path('/', include('modelodjango.base.urls')),
 ]
 
 if settings.DEBUG:
