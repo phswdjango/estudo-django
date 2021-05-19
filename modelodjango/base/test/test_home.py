@@ -15,8 +15,8 @@ def test_status_code(resp):
 
 
 def test_title(resp):
-    assert_contains(resp, '<title>Python Pro</title>')
+    assert_contains(resp, '<title>Demo Django</title>')
 
 
 def test_home_link(resp):
-    assert_contains(resp, f'<a class="navbar-brand" href="{reverse("base:home")}">Estudo Django</a>')
+    assert_contains(resp, f'<a class="navbar-brand" href="{reverse("base:home")}">Demo Django</a>')
