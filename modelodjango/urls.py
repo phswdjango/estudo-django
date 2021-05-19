@@ -20,7 +20,7 @@ from modelodjango.base.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    path('home/', home, name='home'),
 ]
 
 if settings.DEBUG:
