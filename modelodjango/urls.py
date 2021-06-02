@@ -20,6 +20,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('modelodjango.base.urls')),
+    path('segunda_app/', include('modelodjango.segunda_app.urls')),
 ]
 
 if settings.DEBUG:

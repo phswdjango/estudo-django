@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'collectfast',
     'django.contrib.staticfiles',
     'modelodjango.base',
+    'modelodjango.segunda_app'
 ]
 
 MIDDLEWARE = [
