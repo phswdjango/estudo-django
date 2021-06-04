@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Demo Django - Segunda_app{% endblock title %}
+{% block description %}Indice com todos os videos{% endblock description %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <h1 class="mt-4 mb-3">Lista de videos</h1>
+            <ol>
+                {% for video in videos %}
+                <li>{{ video.title | default:"Faltando Titulo" }}</li>
+                {% empty %}
+                <li>Nao foi encontrado nenhum video.</li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock body %}
