@@ -6,7 +6,7 @@ from modelodjango.django_assertions import assert_contains
 @pytest.fixture
 def resp(client):
     return client.get(reverse('segunda_app:video', args=('video1',)))
-    # reverse(calcular url reversa da app), args(parametros passados na url, com slug "motivacao")
+    # reverse(calcular url reversa da app), args(parametros passados na url, com slug "video1")
     # O args tem que ser uma tupla. por isso foi finalizado com virgula.
 
 

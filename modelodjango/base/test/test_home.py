@@ -1,6 +1,6 @@
 from django.urls import reverse
 import pytest as pytest
-# server para emular requisições http, usando a view e path configurados
+# server para emular requisições http, usando a view e path configurados.
 from modelodjango.django_assertions import assert_contains
 
 
@@ -20,3 +20,7 @@ def test_title(resp):
 
 def test_home_link(resp):
     assert_contains(resp, f'<a class="navbar-brand" href="{reverse("base:home")}">Demo Django</a>')
+
+
+def test_email_link(resp):
+    assert_contains(resp, 'href="mailto:contato@phsolucoes.com.br"')
