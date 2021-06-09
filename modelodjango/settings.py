@@ -129,7 +129,7 @@ DATABASES = {
 #                                              # 'BASE_DIR')
 #     }
 # }
-#---------
+# ---------
 #     #django do curso python pro ( é diferente pois é uma versao mais antiga que a 3.2)
 # default_db_url = os.path.join(BASE_DIR, 'db.sqlite3')
 # DATABASES = {
