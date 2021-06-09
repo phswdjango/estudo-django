@@ -112,8 +112,9 @@ parse_database = partial(dj_database_url.parse, conn_max_age=600)
 # {'NAME': '/home/phsw/PycharmProjects/estudo-django/db.sqlite3', 'USER': '', 'PASSWORD': '', 'HOST': '', 'PORT': '',
 #  'CONN_MAX_AGE': 600, 'ENGINE': 'django.db.backends.sqlite3'}
 
-#O dj_database_url serve para criar um dicionario que serve para por na variavel de configuração de db do settings do
-# django. Isso sera usado para definir como e onde a aplicação django deve comunicar com um bd.
+# O dj_database_url serve para criar um dicionario que serve para por na variavel de configuração de db do settings do
+# django. Isso sera usado para definir como e onde a aplicação django deve comunicar com um bd. Ele tera a 'ENGINE' e o
+# 'NAME' que o DATABASE precisa como valor para chave 'default'.
 
 DATABASES = {
     'default': config('DATABASE_URL', default=default_db_url, cast=parse_database)
