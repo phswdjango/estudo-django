@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from functools import partial
 from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 from decouple import config, Csv
 import dj_database_url
 
@@ -85,7 +85,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'modelodjango.wsgi.application'
-# Configuração Django Debug Toolbar
+# Configuração Django Debug Toolbar (so funciona se estiver usando os statics locais)
 INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
 if DEBUG:
     INSTALLED_APPS.append('debug_toolbar')
@@ -96,35 +96,41 @@ if DEBUG:
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 # ------------------------
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 default_db_url = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
-# partial server para criar uma nova chamada de função personalizada(com alguns parametros preselecionados)
+# partial server para criar uma chamada de função personalizada(com parametros preselecionados)
 # no caso estamos criando uma chamada da função parse, com o parametro 'conexão maxima 600'.  Dessa forma, será
 # necessario passar apenas o primeiro parametro, que é a URL.
 
 parse_database = partial(dj_database_url.parse, conn_max_age=600)
 # abaixo, esta buscando o valor da variavel de ambiente 'DATABASE_URL', se nao encontrar pega o "default"(que aponta
 # para o arquivo db.sqlite3, na raiz do projeto), mas em tod0 caso vai passar o valor obtido para a função do parametro
-# "cast", que é um "partial" de dj_database_url.parse, que irá retornar uma serie de valores, que são:
+# "cast", que é um "partial" de dj_database_url.parse, que irá retornar uma serie de valores, que são no caso do
+# parametro recebido ser o "default" será:
 # {'NAME': '/home/phsw/PycharmProjects/estudo-django/db.sqlite3', 'USER': '', 'PASSWORD': '', 'HOST': '', 'PORT': '',
 #  'CONN_MAX_AGE': 600, 'ENGINE': 'django.db.backends.sqlite3'}
 
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+# O dj_database_url serve para criar um dicionario que serve para por na variavel de configuração de db do settings do
+# django. Isso sera usado para definir como e onde a aplicação django deve comunicar com um bd. Ele tera a 'ENGINE' e o
+# 'NAME' que o DATABASE precisa como valor para chave 'default'.
 
 DATABASES = {
     'default': config('DATABASE_URL', default=default_db_url, cast=parse_database)
 }
-# -----------------------/codigo antigo E codigo antigo(da aula pytho pro Endereço de Banco de Dados)
+# -----------------------/codigo antigo do django 3.2 E codigo antigo da aula pytho pro (Endereço de Banco de Dados)
 
 #     #django 3.2.2
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',     # (isso aqui ira criar o arquivo 'db.squilite3' no seu diretorio
+#                                              # 'BASE_DIR')
 #     }
 # }
-#     #django do curso python pro
+# ---------
+#     #django do curso python pro ( é diferente pois é uma versao mais antiga que a 3.2)
 # default_db_url = os.path.join(BASE_DIR, 'db.sqlite3')
 # DATABASES = {
 #     'default': {
