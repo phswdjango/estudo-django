@@ -1,6 +1,6 @@
 from django.urls import reverse
 import pytest as pytest
-# server para emular requisições http, usando a view e path configurados
+# server para emular requisições http, usando a view e path configurados.
 from modelodjango.django_assertions import assert_contains
 
 
