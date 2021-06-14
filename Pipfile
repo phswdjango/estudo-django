@@ -22,6 +22,7 @@ pytest-cov = "*"
 pytest-mock = "*"
 pytest-django = "*"
 codecov = "*"
+model-bakery = "*"
 
 [requires]
 python_version = "3.9"
