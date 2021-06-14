@@ -1,28 +1,23 @@
-from django.shortcuts import render
-from django.urls import reverse
-
-
-class Video:
-    def __init__(self, slug, title, vimeo_id):
-        self.slug = slug
-        self.title = title
-        self.vimeo_id = vimeo_id
-
-    def get_absolute_url(self):   # existe uma conveção no django de criar esse metodo para retorar a url
-        return reverse('segunda_app:video', args=(self.slug,))
-
-
-videos = [
-         Video('video1', 'Video 01 - segunda_app: ', '558095767'),
-         Video('video2', 'Video 02 - segunda_app: ', '558546415')
-    ]
-videos_dct = {v.slug: v for v in videos}
+from django.shortcuts import render, get_object_or_404
+from modelodjango.segunda_app.models import Video
+# --------------/nao precisa mais disso.
+# videos = [
+#          Video(slug='video1', title='Video 01 - segunda_app: ', vimeo_id='558095767'),
+#          Video(slug='video2', title='Video 02 - segunda_app: ', vimeo_id='558546415')
+#     ]
+# videos_dct = {v.slug: v for v in videos}
 
 
 def indice(request):
+    videos = Video.objects.order_by('creation').all()
+    # order_by: ordena a query pelos valores da coluna 'creation'.
+    # all(): pega todos os valores
     return render(request, 'segunda_app/indice.html', context={'videos': videos})
 
 
 def video(request, slug):
-    contexto_do_template = videos_dct[slug]
+    # contexto_do_template = Video.objects.get(slug=slug)
+    contexto_do_template = get_object_or_404(Video, slug=slug)
+    # faz a busca no banco do model "Video" utilizando o slug expecificado, e caso nao econcontre, retorna um 404
+    # ao invez de dar erro.
     return render(request, 'segunda_app/video.html', context={'video': contexto_do_template})
