@@ -53,7 +53,9 @@ INSTALLED_APPS = [
     'collectfast',
     'django.contrib.staticfiles',
     'modelodjango.base',
-    'modelodjango.segunda_app'
+    'modelodjango.segunda_app',
+    'modelodjango.modulos',
+    'ordered_model',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'modelodjango.modulos.context_processors.listar_modulos',
             ],
         },
     },
