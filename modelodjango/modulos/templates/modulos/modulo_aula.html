@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Demo Django - {{aula.title}}{% endblock title %}
+{% block description %}{{aula.descricao}}{% endblock description %}
+{% block body %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{aula.modulo.get_absolute_url}}">{{aula.modulo.title}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{aula.title}}</li>
+  </ol>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <h1 class="mt-4 mb-3">{{ aula.title | default:"Faltando Titulo" }}</h1>
+            <p> {{ aula.descricao | default:"Faltando descrição" }}</p>
+            <!-- a tag acima vai buscar a string do objeto title, dps vai tentar acessar o elemento
+            title como se video fosse um dicionario, e se title for um metodo, será executado e o
+            retorno vai ser trazido para cá. -->
+            <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/{{ aula.vimeo_id }}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="bug no cadapio.mkv"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+        </div>
+    </div>
+</div>
+{% endblock body %}

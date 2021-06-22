@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Demo Django - Índice dos Módulos {% endblock title %}
+{% block description %}Índice dos Módulos{% endblock description %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mt-4 mb-3">Índice dos Módulos</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    {% for modulo in modulos %}
+    <h2>{{modulo.title}}</h2>
+    <p>Público: {{modulo.publico}}</p>
+    <p>Descrição: {{modulo.descricao}}</p>
+    <ol>
+<!--        --Antes do Prefetch--->
+<!--{#        {% for aula in modulo.aula_set.all %}    #}-->
+<!-- {#        <li><a href="{{aula.get_absolute_url}}">{{aula.title}}</a></li>  #}-->
+<!--{#         {% endfor %}   #}-->
+
+<!--        --Depois do Prefetch--->
+        {% for aula in modulo.aulas %}
+        <li><a href="{{aula.get_absolute_url}}">{{aula.title}}</a></li>
+        {% endfor %}
+    </ol>
+    {% endfor %}
+</div>
+{% endblock body %}

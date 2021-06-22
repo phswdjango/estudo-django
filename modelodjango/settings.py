@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'modelodjango.segunda_app',
     'modelodjango.modulos',
     'ordered_model',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
