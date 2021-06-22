@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Demo Django - {{contexto_detalhe.title}}{% endblock title %}
+{% block description %}{{contexto_detalhe.descricao}}{% endblock description %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mt-4 mb-3">{{ contexto_detalhe.title | default:"Faltando Titulo" }}</h1>
+            <!-- a tag acima vai buscar a string do objeto title, dps vai tentar acessar o elemento
+            title como se video fosse um dicionario, e se title for um metodo, será executado e o
+            retorno vai ser trazido para cá. -->
+        </div>
+    </div>
+</div>
+<div class="container">
+    <dl>
+        <dt>Público</dt>
+        <dd>{{ contexto_detalhe.publico | default:"Faltando Descrição" }}</dd>
+        <dt>Descrição</dt>
+        <dd>{{ contexto_detalhe.descricao | default:"Faltando Descrição" }}</dd>
+    </dl>
+    <h2>Aulas</h2>
+    <ol>
+        {% for aula in aulas %}
+        <li><a href="{{aula.get_absolute_url}}">{{aula.title}}</a></li>
+        {% endfor %}
+    </ol>
+
+</div>
+{% endblock body %}

@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('modelodjango.base.urls')),
     path('segunda_app/', include('modelodjango.segunda_app.urls')),
+    path('modulos/', include('modelodjango.modulos.urls'))
 ]
 
 if settings.DEBUG:
