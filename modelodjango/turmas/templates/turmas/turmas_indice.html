@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Demo Django - Turmas{% endblock title %}
+{% block description %}Indice com todos as turmas{% endblock description %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mt-4 mb-3">Índice das Turmas</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    {% for turma in turmas %}
+    <h2>{{turma.nome}}</h2>
+    <p>Início: {{turma.inicio}}</p>
+    <p>Fim: {{turma.fim}}</p>
+    {% endfor %}
+</div>
+{% endblock body %}
