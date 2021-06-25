@@ -4,5 +4,5 @@ _test_case = TestCase()  # instancia um test case do django, e atribuir a _test_
 # metodos e funções sao objetos de primeira classe dentro do python. Por isso é possivel fazer isso ↓
 
 assert_contains = _test_case.assertContains
-
+assert_not_contains = _test_case.assertNotContains
 # vamos pegar o acesso do metodo. Vamos export todos os metodos quer forem necessarios de TestCase

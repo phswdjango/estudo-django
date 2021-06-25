@@ -16,8 +16,8 @@ def aula(modulo):
 
 
 @pytest.fixture
-def resp(client, aula):
-    resp = client.get(reverse('modulos:aula', args=(aula.slug,)))
+def resp(client_com_usuario_logado, aula):
+    resp = client_com_usuario_logado.get(reverse('modulos:aula', args=(aula.slug,)))
     return resp
 
 
@@ -39,3 +39,15 @@ def test_video_aula(resp, aula: Aula):
 
 def test_modulo_breadcrumb(resp, modulo: Modulo):
     assert_contains(resp, f' <li class="breadcrumb-item"><a href="{modulo.get_absolute_url()}">{modulo.title}</a></li>')
+
+
+@pytest.fixture
+def resp_sem_usuario(client, aula):
+    resp = client.get(reverse('modulos:aula', args=(aula.slug,)))
+    return resp
+
+
+def test_usuario_nao_logado_redirect(resp_sem_usuario):
+    assert resp_sem_usuario.status_code == 302  # redirect
+    assert resp_sem_usuario.url.startswith(reverse('login'))
+    # startwith é um metodo de strings, estamos usando ele por que apos o url de login vem o '?next=/...'

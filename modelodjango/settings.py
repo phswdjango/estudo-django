@@ -40,6 +40,9 @@ AUTH_USER_MODEL = 'base.User'  # "qual é a app onde o modelo se encontra"<ponto
 # é necessario essa variavel pois nao estamos utilizado o usuario padrão do django. Por isso precisamos informar qual
 # será a classe base usada como usuario
 
+LOGIN_REDIRECT_URL = '/modulos/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/contas/login/'
 
 # Application definition
 

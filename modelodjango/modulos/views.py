@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from modelodjango.modulos import facede
+from django.contrib.auth.decorators import login_required
 
 
 def detalhe(request, slug):
@@ -9,6 +10,7 @@ def detalhe(request, slug):
                   context={'contexto_detalhe': modulo_especifico, 'aulas': aulas})
 
 
+@login_required
 def aula(request, slug):
     aula = facede.mostrar_aula(slug)
     return render(request, 'modulos/modulo_aula.html',

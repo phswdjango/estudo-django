@@ -23,8 +23,10 @@ urlpatterns = [
     path('segunda_app/', include('modelodjango.segunda_app.urls')),
     path('modulos/', include('modelodjango.modulos.urls')),
     path('turmas/', include('modelodjango.turmas.urls')),
+    path('contas/', include('django.contrib.auth.urls')),  # importando as views de autenticação.
 ]
 
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns.append(path('__debug__/', include(debug_toolbar.urls)))
