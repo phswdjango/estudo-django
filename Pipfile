@@ -16,6 +16,7 @@ sentry-sdk = "*"
 django-ordered-model = "*"
 ipython = "*"
 django-extensions = "*"
+django-anymail = "*"
 
 [dev-packages]
 flake8 = "*"

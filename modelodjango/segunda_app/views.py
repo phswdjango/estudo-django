@@ -1,11 +1,17 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, HttpResponse
 from modelodjango.segunda_app.models import Video
-# --------------/nao precisa mais disso.
-# videos = [
-#          Video(slug='video1', title='Video 01 - segunda_app: ', vimeo_id='558095767'),
-#          Video(slug='video2', title='Video 02 - segunda_app: ', vimeo_id='558546415')
-#     ]
-# videos_dct = {v.slug: v for v in videos}
+from django.core.mail import send_mail
+
+
+def email(request):
+    send_mail(
+        "teste",
+        "olá, eu sou um testes",
+        "noreply@phsolucoesweb.com.br<noreply@phsolucoesweb.com.br>",
+        ["pedrohenriquemadureira@gmail.com"]
+    )
+
+    return HttpResponse("email enviado, se deus quiser")
 
 
 def indice(request):
