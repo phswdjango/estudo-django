@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ordered_model',
     'django_extensions',
+    'anymail',
 
 ]
 
@@ -97,13 +98,24 @@ WSGI_APPLICATION = 'modelodjango.wsgi.application'
 
 # Configurações de envio de email
 
-EMAIL_BACKEND = config('EMAIL_BACKEND')
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+# --------------/ envio com django-anymail e mailgun (com desacomplamento)
+# EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+# por algum motivo o shell_plus sempre importa o backend de console se por a variavel desacoplada.
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+SERVER_EMAIL = config('SERVER_EMAIL')
+ANYMAIL = {'MAILGUN_API_KEY': config('MAILGUN_API_KEY'),
+           'MAILGUN_SENDER_DOMAIN': config('MAILGUN_SENDER_DOMAIN'),
+           }
+
+# --------------/ envio sem django-anymail
+# EMAIL_HOST = config('EMAIL_HOST')
+# EMAIL_PORT = config('EMAIL_PORT')
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+# EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 # EMAIL_USE_TLS   "Nao sera usado"
+
 
 # Configuração Django Debug Toolbar (so funciona se estiver usando os statics locais)
 INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')

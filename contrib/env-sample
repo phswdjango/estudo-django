@@ -11,9 +11,8 @@ INTERNAL_IPS=127.0.0.1
 SENTRY_DSN=
 
 #configuração de email
-EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
-EMAIL_HOST=localhost
-EMAIL_PORT=25
-EMAIL_HOST_USER=
-EMAIL_HOST_PASSWORD=
-EMAIL_USE_TLS=True
+EMAIL_BACKEND=anymail.backends.mailgun.EmailBackend
+DEFAULT_FROM_EMAIL=
+SERVER_EMAIL=
+MAILGUN_API_KEY=
+MAILGUN_SENDER_DOMAIN=
