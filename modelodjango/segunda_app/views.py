@@ -3,6 +3,7 @@ from modelodjango.segunda_app.models import Video
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 
+
 @login_required
 def email(request):
     send_mail(
