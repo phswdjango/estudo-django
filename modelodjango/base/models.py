@@ -95,7 +95,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []         # wtf
+    REQUIRED_FIELDS = []
+    # REQUIRED_FIELDS must contain all required fields on your user model, but should not contain the USERNAME_FIELD or
+    # password as these fields will always be prompted for.
 
     class Meta:
         verbose_name = _('user')

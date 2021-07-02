@@ -241,26 +241,19 @@ if AWS_ACCESS_KEY_ID:  # pragma: no cover
     # ---/Upload Media Folder
 
     DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
-    # classe dessa biblioteca que vai fazer a gestão de upload de arquivos
-    DEFAULT_S3_PATH = 'media'  # path padrão dos arquivos estaticos
-    MEDIA_ROOT = f'/{DEFAULT_S3_PATH}/'  # sobrescrever o static_root da linha 158.
-    # MEDIA_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{DEFAULT_S3_PATH}/'
-    # -
+    # classe dessa biblioteca que vai fazer a gestão de upload de midia
+    DEFAULT_S3_PATH = 'media'  # path padrão dos arquivos de midia.
+    MEDIA_ROOT = f'/{DEFAULT_S3_PATH}/'
     MEDIA_URL = f'//{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{DEFAULT_S3_PATH}/'
-    # -
     # começa com '//' por que vai seguir o protocolo no qual ele for inserido (https, http,)
 
     # -----/Static assets
 
     STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
-    # classe da biblioteca que instalamos que vai fazer a gestão da pasta static pragente.
+    # classe da biblioteca que instalamos que vai fazer a gestão da pasta static.
     STATIC_S3_PATH = 'static'  # path padrão dos arquivos estaticos
-    STATIC_ROOT = f'/{STATIC_S3_PATH}/'  # sobrescrever o static_root da linha 158.
-    # STATIC_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{STATIC_S3_PATH}/'
-    # -
+    STATIC_ROOT = f'/{STATIC_S3_PATH}/'
     STATIC_URL = f'//{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{STATIC_S3_PATH}/'
-    # -
-    # começa com '//' por que vai seguir o protocolo no qual ele for inserido (https, http,)
     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'  # separar os arquivos staticos de admin
 
 
